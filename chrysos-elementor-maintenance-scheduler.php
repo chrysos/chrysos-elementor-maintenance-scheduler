@@ -24,6 +24,7 @@ require_once CHRYSOS_EMS_PATH . 'vendor/woocommerce/action-scheduler/action-sche
 require_once CHRYSOS_EMS_PATH . 'includes/class-maintenance.php';
 require_once CHRYSOS_EMS_PATH . 'includes/class-scheduler.php';
 require_once CHRYSOS_EMS_PATH . 'includes/class-admin.php';
+require_once CHRYSOS_EMS_PATH . 'includes/class-abilities.php';
 
 /**
  * Bootstrap after Elementor has loaded.
@@ -40,6 +41,10 @@ add_action( 'plugins_loaded', function () {
 
     new Chrysos_EMS\Admin();
     new Chrysos_EMS\Scheduler();
+
+    if ( function_exists( 'wp_register_ability' ) ) {
+        new Chrysos_EMS\Abilities();
+    }
 }, 20 );
 
 // Activation.
