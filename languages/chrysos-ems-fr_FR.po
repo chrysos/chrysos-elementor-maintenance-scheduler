@@ -1,0 +1,276 @@
+# French (France) translation for the Chrysos Elementor Maintenance Scheduler package.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the Chrysos Elementor Maintenance Scheduler package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Chrysos Elementor Maintenance Scheduler 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/chrysos/chrysos-elementor-"
+"maintenance-scheduler/issues\n"
+"POT-Creation-Date: 2026-03-13 20:22-0300\n"
+"PO-Revision-Date: 2026-03-13 20:22-0300\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: French (France)\n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: chrysos-elementor-maintenance-scheduler.php:41
+msgid ""
+"Maintenance Schedule requires the Elementor plugin. Please install and "
+"activate Elementor first."
+msgstr ""
+"La planification de maintenance nécessite l'extension Elementor. Veuillez "
+"d'abord installer et activer Elementor."
+
+#: chrysos-elementor-maintenance-scheduler.php:58
+msgid "Settings"
+msgstr "Réglages"
+
+#: includes/class-admin.php:26 includes/class-admin.php:27
+msgid "Maintenance Schedule"
+msgstr "Planification de maintenance"
+
+#: includes/class-admin.php:43
+msgid "General"
+msgstr "Général"
+
+#: includes/class-admin.php:44
+msgid "Scheduling"
+msgstr "Planification"
+
+#: includes/class-admin.php:45
+msgid "Mode"
+msgstr "Mode"
+
+#: includes/class-admin.php:48
+msgid "Weekly schedule"
+msgstr "Planification hebdomadaire"
+
+#: includes/class-admin.php:49
+msgid "Turns on"
+msgstr "Activation"
+
+#: includes/class-admin.php:50
+msgid "Turns off"
+msgstr "Désactivation"
+
+#: includes/class-admin.php:53
+msgid "Extra dates"
+msgstr "Dates supplémentaires"
+
+#: includes/class-admin.php:54
+msgid "Dates"
+msgstr "Dates"
+
+#: includes/class-admin.php:139
+msgid "Current status"
+msgstr "État actuel"
+
+#: includes/class-admin.php:142
+msgid "Right now"
+msgstr "En ce moment"
+
+#: includes/class-admin.php:147
+msgid "On — Coming Soon mode"
+msgstr "Activé — Mode Bientôt disponible"
+
+#: includes/class-admin.php:148
+msgid "On — Maintenance mode"
+msgstr "Activé — Mode maintenance"
+
+#: includes/class-admin.php:152
+msgid "Off — site is public"
+msgstr "Désactivé — le site est public"
+
+#: includes/class-admin.php:157
+msgid "Timezone"
+msgstr "Fuseau horaire"
+
+#: includes/class-admin.php:160
+msgid "Change"
+msgstr "Modifier"
+
+#: includes/class-admin.php:164
+msgid "Template"
+msgstr "Modèle"
+
+#: includes/class-admin.php:169
+msgid "None selected"
+msgstr "Aucun sélectionné"
+
+#: includes/class-admin.php:171
+msgid "Choose in Elementor"
+msgstr "Choisir dans Elementor"
+
+#: includes/class-admin.php:187
+msgid ""
+"Turn maintenance mode on and off automatically based on the schedule below"
+msgstr ""
+"Activer et désactiver automatiquement le mode maintenance selon la "
+"planification ci-dessous"
+
+#: includes/class-admin.php:198
+msgid "Maintenance"
+msgstr "Maintenance"
+
+#: includes/class-admin.php:201
+msgid "Coming Soon"
+msgstr "Bientôt disponible"
+
+#: includes/class-admin.php:205
+msgid ""
+"Maintenance returns HTTP 503, which tells search engines the site is "
+"temporarily down. Coming Soon returns HTTP 200, better for sites not yet "
+"launched. When in doubt, pick Maintenance."
+msgstr ""
+"Maintenance renvoie HTTP 503, ce qui indique aux moteurs de recherche que le "
+"site est temporairement indisponible. Bientôt disponible renvoie HTTP 200, "
+"plus adapté aux sites pas encore lancés. En cas de doute, choisissez "
+"Maintenance."
+
+#: includes/class-admin.php:225
+msgid ""
+"Enable or disable the automatic schedule below. While disabled, nothing "
+"happens, but your settings are kept."
+msgstr ""
+"Activez ou désactivez la planification automatique ci-dessous. Lorsqu'elle "
+"est désactivée, rien ne se passe, mais vos réglages sont conservés."
+
+#: includes/class-admin.php:229
+msgid ""
+"Pick the day and time when maintenance mode turns on and off each week. All "
+"times use your site's timezone (shown in the Status panel above)."
+msgstr ""
+"Choisissez le jour et l'heure d'activation et de désactivation du mode "
+"maintenance chaque semaine. Toutes les heures utilisent le fuseau horaire de "
+"votre site (affiché dans le panneau État ci-dessus)."
+
+#: includes/class-admin.php:233
+msgid ""
+"Add specific dates when you also want maintenance mode on, like holidays or "
+"one-off events. Past dates are removed automatically."
+msgstr ""
+"Ajoutez des dates spécifiques où vous souhaitez également activer le mode "
+"maintenance, comme les jours fériés ou les événements ponctuels. Les dates "
+"passées sont supprimées automatiquement."
+
+#: includes/class-admin.php:261
+msgid "+ Add Date"
+msgstr "+ Ajouter une date"
+
+#: includes/class-admin.php:270
+msgid "Sunday"
+msgstr "Dimanche"
+
+#: includes/class-admin.php:271
+msgid "Monday"
+msgstr "Lundi"
+
+#: includes/class-admin.php:272
+msgid "Tuesday"
+msgstr "Mardi"
+
+#: includes/class-admin.php:273
+msgid "Wednesday"
+msgstr "Mercredi"
+
+#: includes/class-admin.php:274
+msgid "Thursday"
+msgstr "Jeudi"
+
+#: includes/class-admin.php:275
+msgid "Friday"
+msgstr "Vendredi"
+
+#: includes/class-admin.php:276
+msgid "Saturday"
+msgstr "Samedi"
+
+#: includes/class-admin.php:316
+#, php-format
+msgid ""
+"You need to choose a maintenance page template in Elementor before the "
+"schedule can work. %s to pick one."
+msgstr ""
+"Vous devez choisir un modèle de page de maintenance dans Elementor avant que "
+"la planification puisse fonctionner. %s pour en choisir un."
+
+#: includes/class-admin.php:317
+msgid "Go to Elementor settings"
+msgstr "Aller aux réglages Elementor"
+
+#: includes/class-abilities.php:18
+msgid "Maintenance Mode"
+msgstr "Mode maintenance"
+
+#: includes/class-abilities.php:19
+msgid ""
+"Turn Elementor maintenance and coming soon modes on or off, check status, "
+"and manage the recurring schedule."
+msgstr ""
+"Activer ou désactiver les modes maintenance et Bientôt disponible "
+"d'Elementor, vérifier l'état et gérer la planification récurrente."
+
+#: includes/class-abilities.php:27
+msgid "Get Maintenance Status"
+msgstr "Obtenir l'état de maintenance"
+
+#: includes/class-abilities.php:28
+msgid ""
+"Check whether maintenance mode is on right now, which mode is active, and if "
+"the current time falls inside a scheduled window."
+msgstr ""
+"Vérifier si le mode maintenance est actuellement activé, quel mode est "
+"actif et si l'heure actuelle se situe dans une fenêtre planifiée."
+
+#: includes/class-abilities.php:48
+msgid "Activate Maintenance Mode"
+msgstr "Activer le mode maintenance"
+
+#: includes/class-abilities.php:49
+msgid ""
+"Turn maintenance mode on. You can pass \"maintenance\" or \"coming_soon\" as "
+"the mode; if omitted, the plugin's saved setting is used."
+msgstr ""
+"Activer le mode maintenance. Vous pouvez passer \"maintenance\" ou "
+"\"coming_soon\" comme mode ; si omis, le réglage enregistré de l'extension "
+"est utilisé."
+
+#: includes/class-abilities.php:76
+msgid "Deactivate Maintenance Mode"
+msgstr "Désactiver le mode maintenance"
+
+#: includes/class-abilities.php:77
+msgid "Turn maintenance mode off so the site is publicly accessible again."
+msgstr ""
+"Désactiver le mode maintenance pour que le site soit de nouveau accessible "
+"au public."
+
+#: includes/class-abilities.php:94
+msgid "Get Maintenance Schedule"
+msgstr "Obtenir la planification de maintenance"
+
+#: includes/class-abilities.php:95
+msgid ""
+"Read the current schedule: weekly on/off times, any extra dates, which mode "
+"is configured, and the site timezone."
+msgstr ""
+"Lire la planification actuelle : horaires hebdomadaires d'activation et de "
+"désactivation, dates supplémentaires éventuelles, mode configuré et fuseau "
+"horaire du site."
+
+#: includes/class-abilities.php:128
+msgid "Rebuild Schedule"
+msgstr "Reconstruire la planification"
+
+#: includes/class-abilities.php:129
+msgid ""
+"Clear and recreate all scheduled on/off actions from the saved settings. "
+"Safe to call repeatedly; it rebuilds from scratch each time."
+msgstr ""
+"Effacer et recréer toutes les actions planifiées d'activation et de "
+"désactivation à partir des réglages enregistrés. Peut être appelé "
+"plusieurs fois sans risque ; la reconstruction se fait à zéro à chaque fois."
