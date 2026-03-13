@@ -23,8 +23,8 @@ class Admin {
      */
     public function add_menu_page(): void {
         add_options_page(
-            __( 'EMS Schedule', 'chrysos-ems' ),
-            __( 'EMS Schedule', 'chrysos-ems' ),
+            __( 'Maintenance Schedule', 'chrysos-ems' ),
+            __( 'Maintenance Schedule', 'chrysos-ems' ),
             'manage_options',
             self::PAGE_SLUG,
             [ $this, 'render_page' ]
@@ -39,18 +39,18 @@ class Admin {
             'sanitize_callback' => [ $this, 'sanitize_settings' ],
         ] );
 
-        // Section: Enable/Disable.
-        add_settings_section( 'chrysos_ems_enable', __( 'Enable/Disable', 'chrysos-ems' ), '__return_null', self::PAGE_SLUG );
-        add_settings_field( 'enabled', __( 'Enable scheduling', 'chrysos-ems' ), [ $this, 'field_enabled' ], self::PAGE_SLUG, 'chrysos_ems_enable' );
+        // Section: General.
+        add_settings_section( 'chrysos_ems_enable', __( 'General', 'chrysos-ems' ), [ $this, 'section_general_description' ], self::PAGE_SLUG );
+        add_settings_field( 'enabled', __( 'Scheduling', 'chrysos-ems' ), [ $this, 'field_enabled' ], self::PAGE_SLUG, 'chrysos_ems_enable' );
         add_settings_field( 'mode', __( 'Mode', 'chrysos-ems' ), [ $this, 'field_mode' ], self::PAGE_SLUG, 'chrysos_ems_enable' );
 
         // Section: Weekly Schedule.
-        add_settings_section( 'chrysos_ems_weekly', __( 'Weekly Schedule', 'chrysos-ems' ), '__return_null', self::PAGE_SLUG );
-        add_settings_field( 'weekly_start', __( 'Start (day & time)', 'chrysos-ems' ), [ $this, 'field_weekly_start' ], self::PAGE_SLUG, 'chrysos_ems_weekly' );
-        add_settings_field( 'weekly_end', __( 'End (day & time)', 'chrysos-ems' ), [ $this, 'field_weekly_end' ], self::PAGE_SLUG, 'chrysos_ems_weekly' );
+        add_settings_section( 'chrysos_ems_weekly', __( 'Weekly schedule', 'chrysos-ems' ), [ $this, 'section_weekly_description' ], self::PAGE_SLUG );
+        add_settings_field( 'weekly_start', __( 'Turns on', 'chrysos-ems' ), [ $this, 'field_weekly_start' ], self::PAGE_SLUG, 'chrysos_ems_weekly' );
+        add_settings_field( 'weekly_end', __( 'Turns off', 'chrysos-ems' ), [ $this, 'field_weekly_end' ], self::PAGE_SLUG, 'chrysos_ems_weekly' );
 
         // Section: Extra Dates.
-        add_settings_section( 'chrysos_ems_extra', __( 'Extra Dates', 'chrysos-ems' ), [ $this, 'section_extra_dates_description' ], self::PAGE_SLUG );
+        add_settings_section( 'chrysos_ems_extra', __( 'Extra dates', 'chrysos-ems' ), [ $this, 'section_extra_dates_description' ], self::PAGE_SLUG );
         add_settings_field( 'extra_dates', __( 'Dates', 'chrysos-ems' ), [ $this, 'field_extra_dates' ], self::PAGE_SLUG, 'chrysos_ems_extra' );
     }
 
@@ -136,20 +136,20 @@ class Admin {
         $template_id = get_option( 'elementor_maintenance_mode_template_id', 0 );
         ?>
         <div class="card" style="max-width: 600px; margin-bottom: 20px; padding: 12px;">
-            <h3 style="margin-top: 0;"><?php esc_html_e( 'Status', 'chrysos-ems' ); ?></h3>
+            <h3 style="margin-top: 0;"><?php esc_html_e( 'Current status', 'chrysos-ems' ); ?></h3>
             <table class="form-table" role="presentation" style="margin: 0;">
                 <tr>
-                    <th scope="row"><?php esc_html_e( 'Maintenance Mode', 'chrysos-ems' ); ?></th>
+                    <th scope="row"><?php esc_html_e( 'Right now', 'chrysos-ems' ); ?></th>
                     <td>
                         <?php if ( $is_active ) :
                             $current_mode = get_option( 'elementor_maintenance_mode_mode', '' );
                             $mode_label   = $current_mode === 'coming_soon'
-                                ? __( 'Active (Coming Soon)', 'chrysos-ems' )
-                                : __( 'Active (Maintenance)', 'chrysos-ems' );
+                                ? __( 'On — Coming Soon mode', 'chrysos-ems' )
+                                : __( 'On — Maintenance mode', 'chrysos-ems' );
                         ?>
                             <span style="color: #d63638; font-weight: bold;">&#9679; <?php echo esc_html( $mode_label ); ?></span>
                         <?php else : ?>
-                            <span style="color: #00a32a; font-weight: bold;">&#9679; <?php esc_html_e( 'Inactive', 'chrysos-ems' ); ?></span>
+                            <span style="color: #00a32a; font-weight: bold;">&#9679; <?php esc_html_e( 'Off — site is public', 'chrysos-ems' ); ?></span>
                         <?php endif; ?>
                     </td>
                 </tr>
@@ -161,14 +161,14 @@ class Admin {
                     </td>
                 </tr>
                 <tr>
-                    <th scope="row"><?php esc_html_e( 'Elementor Template', 'chrysos-ems' ); ?></th>
+                    <th scope="row"><?php esc_html_e( 'Template', 'chrysos-ems' ); ?></th>
                     <td>
                         <?php if ( $template_id ) : ?>
                             <?php echo esc_html( get_the_title( $template_id ) ); ?>
                         <?php else : ?>
-                            <span style="color: #dba617;"><?php esc_html_e( 'Not configured', 'chrysos-ems' ); ?></span>
+                            <span style="color: #dba617;"><?php esc_html_e( 'None selected', 'chrysos-ems' ); ?></span>
                         <?php endif; ?>
-                        &mdash; <a href="<?php echo esc_url( admin_url( 'admin.php?page=elementor-tools#tab-maintenance_mode' ) ); ?>"><?php esc_html_e( 'Configure in Elementor', 'chrysos-ems' ); ?></a>
+                        &mdash; <a href="<?php echo esc_url( admin_url( 'admin.php?page=elementor-tools#tab-maintenance_mode' ) ); ?>"><?php esc_html_e( 'Choose in Elementor', 'chrysos-ems' ); ?></a>
                     </td>
                 </tr>
             </table>
@@ -184,7 +184,7 @@ class Admin {
         ?>
         <label>
             <input type="checkbox" name="<?php echo esc_attr( self::OPTION_KEY ); ?>[enabled]" value="1" <?php checked( $checked ); ?>>
-            <?php esc_html_e( 'Activate automatic maintenance mode scheduling', 'chrysos-ems' ); ?>
+            <?php esc_html_e( 'Turn maintenance mode on and off automatically based on the schedule below', 'chrysos-ems' ); ?>
         </label>
         <?php
     }
@@ -202,7 +202,7 @@ class Admin {
             </option>
         </select>
         <p class="description">
-            <?php esc_html_e( 'Maintenance: returns HTTP 503 (recommended). Coming Soon: returns HTTP 200.', 'chrysos-ems' ); ?>
+            <?php esc_html_e( 'Maintenance returns HTTP 503, which tells search engines the site is temporarily down. Coming Soon returns HTTP 200, better for sites not yet launched. When in doubt, pick Maintenance.', 'chrysos-ems' ); ?>
         </p>
         <?php
     }
@@ -221,8 +221,16 @@ class Admin {
         $this->render_day_time_fields( 'weekly_end_day', 'weekly_end_time', $day, $time );
     }
 
+    public function section_general_description(): void {
+        echo '<p>' . esc_html__( 'Enable or disable the automatic schedule below. While disabled, nothing happens, but your settings are kept.', 'chrysos-ems' ) . '</p>';
+    }
+
+    public function section_weekly_description(): void {
+        echo '<p>' . esc_html__( 'Pick the day and time when maintenance mode turns on and off each week. All times use your site\'s timezone (shown in the Status panel above).', 'chrysos-ems' ) . '</p>';
+    }
+
     public function section_extra_dates_description(): void {
-        echo '<p>' . esc_html__( 'Add specific dates for maintenance mode (e.g. holidays). Past dates are automatically removed.', 'chrysos-ems' ) . '</p>';
+        echo '<p>' . esc_html__( 'Add specific dates when you also want maintenance mode on, like holidays or one-off events. Past dates are removed automatically.', 'chrysos-ems' ) . '</p>';
     }
 
     public function field_extra_dates(): void {
@@ -304,9 +312,9 @@ class Admin {
             if ( ! $template_id ) {
                 echo '<div class="notice notice-warning"><p>';
                 printf(
-                    /* translators: %s: URL to Elementor maintenance mode settings */
-                    esc_html__( 'No maintenance mode template is configured in Elementor. %s to set one up.', 'chrysos-ems' ),
-                    '<a href="' . esc_url( admin_url( 'admin.php?page=elementor-tools#tab-maintenance_mode' ) ) . '">' . esc_html__( 'Click here', 'chrysos-ems' ) . '</a>'
+                    /* translators: %s: link to Elementor maintenance mode settings */
+                    esc_html__( 'You need to choose a maintenance page template in Elementor before the schedule can work. %s to pick one.', 'chrysos-ems' ),
+                    '<a href="' . esc_url( admin_url( 'admin.php?page=elementor-tools#tab-maintenance_mode' ) ) . '">' . esc_html__( 'Go to Elementor settings', 'chrysos-ems' ) . '</a>'
                 );
                 echo '</p></div>';
             }

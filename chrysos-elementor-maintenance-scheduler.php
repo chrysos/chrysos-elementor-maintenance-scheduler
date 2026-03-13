@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Chrysos – Elementor Maintenance Mode Scheduling
  * Plugin URI:  https://github.com/chrysos/chrysos-elementor-maintenance-scheduler
- * Description: Automatically activates/deactivates Elementor maintenance mode on a recurring weekly schedule (e.g. Shabbat) with support for extra manual dates.
+ * Description: Schedule Elementor's maintenance or coming soon mode to turn on and off automatically every week (e.g. Shabbat, off-peak hours) and on specific dates you choose.
  * Version:     1.0.0
  * Author:      chrysos
  * Author URI:  https://github.com/chrysos
@@ -33,7 +33,7 @@ add_action( 'plugins_loaded', function () {
     if ( ! defined( 'ELEMENTOR_VERSION' ) ) {
         add_action( 'admin_notices', function () {
             echo '<div class="notice notice-error is-dismissible"><p>';
-            echo esc_html__( 'Chrysos EMS requires Elementor to be installed and active.', 'chrysos-ems' );
+            echo esc_html__( 'Maintenance Schedule requires the Elementor plugin. Please install and activate Elementor first.', 'chrysos-ems' );
             echo '</p></div>';
         } );
         return;
