@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Chrysos Elementor Maintenance Scheduler 1.0.0\n"
 "Report-Msgid-Bugs-To: https://github.com/chrysos/chrysos-elementor-"
 "maintenance-scheduler/issues\n"
-"POT-Creation-Date: 2026-03-13 20:22-0300\n"
+"POT-Creation-Date: 2026-03-13 20:25-0300\n"
 "PO-Revision-Date: 2026-03-13 20:22-0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Spanish (Spain) <LL@li.org>\n"
@@ -65,62 +65,121 @@ msgstr "Fechas adicionales"
 msgid "Dates"
 msgstr "Fechas"
 
-#: includes/class-admin.php:139
+#: includes/class-admin.php:141
 msgid "Current status"
 msgstr "Estado actual"
 
-#: includes/class-admin.php:142
+#: includes/class-admin.php:144
 msgid "Right now"
 msgstr "Ahora mismo"
 
-#: includes/class-admin.php:147
+#: includes/class-admin.php:149
 msgid "On — Coming Soon mode"
 msgstr "Activado — Modo Próximamente"
 
-#: includes/class-admin.php:148
+#: includes/class-admin.php:150
 msgid "On — Maintenance mode"
 msgstr "Activado — Modo de mantenimiento"
 
-#: includes/class-admin.php:152
+#: includes/class-admin.php:154
 msgid "Off — site is public"
 msgstr "Desactivado — el sitio es público"
 
-#: includes/class-admin.php:157
+#: includes/class-admin.php:159
 msgid "Timezone"
 msgstr "Zona horaria"
 
-#: includes/class-admin.php:160
+#: includes/class-admin.php:162
 msgid "Change"
 msgstr "Cambiar"
 
-#: includes/class-admin.php:164
+#: includes/class-admin.php:166
 msgid "Template"
 msgstr "Plantilla"
 
-#: includes/class-admin.php:169
+#: includes/class-admin.php:171
 msgid "None selected"
 msgstr "Ninguna seleccionada"
 
-#: includes/class-admin.php:171
+#: includes/class-admin.php:173
 msgid "Choose in Elementor"
 msgstr "Elegir en Elementor"
 
-#: includes/class-admin.php:187
+#: includes/class-admin.php:188
+msgid "Improving schedule accuracy"
+msgstr "Mejorar la precisión de la programación"
+
+#: includes/class-admin.php:190
+msgid ""
+"WordPress runs scheduled tasks (WP-Cron) only when someone visits your site. "
+"On low-traffic sites this can delay activation or deactivation by minutes or "
+"even hours."
+msgstr ""
+"WordPress ejecuta las tareas programadas (WP-Cron) solo cuando alguien "
+"visita su sitio. En sitios con poco tráfico, esto puede retrasar la "
+"activación o desactivación varios minutos o incluso horas."
+
+#: includes/class-admin.php:193
+msgid ""
+"For precise timing, disable WP-Cron and use a real server cron job instead:"
+msgstr ""
+"Para una sincronización precisa, desactive WP-Cron y use una tarea cron real "
+"del servidor en su lugar:"
+
+#: includes/class-admin.php:196
+msgid "Step 1:"
+msgstr "Paso 1:"
+
+#: includes/class-admin.php:200
+#, php-format
+msgid "Add this line to your %s file, before the \"That's all\" comment:"
+msgstr "Añada esta línea a su archivo %s, antes del comentario \"That's all\":"
+
+#: includes/class-admin.php:207
+msgid "Step 2:"
+msgstr "Paso 2:"
+
+#: includes/class-admin.php:208
+msgid "Add a cron job on your server to call WP-Cron every minute:"
+msgstr "Añada una tarea cron en su servidor para ejecutar WP-Cron cada minuto:"
+
+#: includes/class-admin.php:212
+msgid "If wget is not available, you can use curl instead:"
+msgstr "Si wget no está disponible, puede usar curl en su lugar:"
+
+#: includes/class-admin.php:217
+msgid ""
+"WP-Cron is already disabled on this site, which means you probably have a "
+"server cron set up. Good."
+msgstr ""
+"WP-Cron ya está desactivado en este sitio, lo que significa que probablemente "
+"tiene una tarea cron del servidor configurada. Bien."
+
+#: includes/class-admin.php:221
+msgid ""
+"This site is using the default WP-Cron. The schedule will work, but times "
+"may not be exact on low-traffic sites."
+msgstr ""
+"Este sitio está usando el WP-Cron predeterminado. La programación "
+"funcionará, pero los horarios pueden no ser exactos en sitios con poco "
+"tráfico."
+
+#: includes/class-admin.php:236
 msgid ""
 "Turn maintenance mode on and off automatically based on the schedule below"
 msgstr ""
 "Activar y desactivar el modo de mantenimiento automáticamente según la "
 "programación de abajo"
 
-#: includes/class-admin.php:198
+#: includes/class-admin.php:247
 msgid "Maintenance"
 msgstr "Mantenimiento"
 
-#: includes/class-admin.php:201
+#: includes/class-admin.php:250
 msgid "Coming Soon"
 msgstr "Próximamente"
 
-#: includes/class-admin.php:205
+#: includes/class-admin.php:254
 msgid ""
 "Maintenance returns HTTP 503, which tells search engines the site is "
 "temporarily down. Coming Soon returns HTTP 200, better for sites not yet "
@@ -131,7 +190,7 @@ msgstr ""
 "200, más adecuado para sitios aún no lanzados. En caso de duda, elija "
 "Mantenimiento."
 
-#: includes/class-admin.php:225
+#: includes/class-admin.php:274
 msgid ""
 "Enable or disable the automatic schedule below. While disabled, nothing "
 "happens, but your settings are kept."
@@ -139,7 +198,7 @@ msgstr ""
 "Active o desactive la programación automática de abajo. Mientras esté "
 "desactivada, no sucede nada, pero sus ajustes se conservan."
 
-#: includes/class-admin.php:229
+#: includes/class-admin.php:278
 msgid ""
 "Pick the day and time when maintenance mode turns on and off each week. All "
 "times use your site's timezone (shown in the Status panel above)."
@@ -148,7 +207,7 @@ msgstr ""
 "cada semana. Todas las horas usan la zona horaria de su sitio (mostrada en "
 "el panel de Estado de arriba)."
 
-#: includes/class-admin.php:233
+#: includes/class-admin.php:282
 msgid ""
 "Add specific dates when you also want maintenance mode on, like holidays or "
 "one-off events. Past dates are removed automatically."
@@ -157,39 +216,39 @@ msgstr ""
 "mantenimiento, como festivos o eventos puntuales. Las fechas pasadas se "
 "eliminan automáticamente."
 
-#: includes/class-admin.php:261
+#: includes/class-admin.php:310
 msgid "+ Add Date"
 msgstr "+ Añadir fecha"
 
-#: includes/class-admin.php:270
+#: includes/class-admin.php:319
 msgid "Sunday"
 msgstr "Domingo"
 
-#: includes/class-admin.php:271
+#: includes/class-admin.php:320
 msgid "Monday"
 msgstr "Lunes"
 
-#: includes/class-admin.php:272
+#: includes/class-admin.php:321
 msgid "Tuesday"
 msgstr "Martes"
 
-#: includes/class-admin.php:273
+#: includes/class-admin.php:322
 msgid "Wednesday"
 msgstr "Miércoles"
 
-#: includes/class-admin.php:274
+#: includes/class-admin.php:323
 msgid "Thursday"
 msgstr "Jueves"
 
-#: includes/class-admin.php:275
+#: includes/class-admin.php:324
 msgid "Friday"
 msgstr "Viernes"
 
-#: includes/class-admin.php:276
+#: includes/class-admin.php:325
 msgid "Saturday"
 msgstr "Sábado"
 
-#: includes/class-admin.php:316
+#: includes/class-admin.php:365
 #, php-format
 msgid ""
 "You need to choose a maintenance page template in Elementor before the "
@@ -198,7 +257,7 @@ msgstr ""
 "Debe elegir una plantilla de página de mantenimiento en Elementor antes de "
 "que la programación pueda funcionar. %s para elegir una."
 
-#: includes/class-admin.php:317
+#: includes/class-admin.php:366
 msgid "Go to Elementor settings"
 msgstr "Ir a los ajustes de Elementor"
 
@@ -237,8 +296,7 @@ msgid ""
 "the mode; if omitted, the plugin's saved setting is used."
 msgstr ""
 "Activar el modo de mantenimiento. Puede pasar \"maintenance\" o "
-"\"coming_soon\" como modo; si se omite, se usa el ajuste guardado del "
-"plugin."
+"\"coming_soon\" como modo; si se omite, se usa el ajuste guardado del plugin."
 
 #: includes/class-abilities.php:76
 msgid "Deactivate Maintenance Mode"

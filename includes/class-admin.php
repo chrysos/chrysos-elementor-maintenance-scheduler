@@ -123,6 +123,8 @@ class Admin {
                 submit_button();
                 ?>
             </form>
+
+            <?php $this->render_cron_help_box(); ?>
         </div>
         <?php
     }
@@ -172,6 +174,53 @@ class Admin {
                     </td>
                 </tr>
             </table>
+        </div>
+        <?php
+    }
+
+    /**
+     * Render the cron help box at the bottom of the settings page.
+     */
+    private function render_cron_help_box(): void {
+        $has_real_cron = defined( 'DISABLE_WP_CRON' ) && DISABLE_WP_CRON;
+        ?>
+        <div class="card" style="max-width: 600px; margin-top: 30px; padding: 12px;">
+            <h3 style="margin-top: 0;"><?php esc_html_e( 'Improving schedule accuracy', 'chrysos-ems' ); ?></h3>
+            <p>
+                <?php esc_html_e( 'WordPress runs scheduled tasks (WP-Cron) only when someone visits your site. On low-traffic sites this can delay activation or deactivation by minutes or even hours.', 'chrysos-ems' ); ?>
+            </p>
+            <p>
+                <?php esc_html_e( 'For precise timing, disable WP-Cron and use a real server cron job instead:', 'chrysos-ems' ); ?>
+            </p>
+            <p>
+                <strong><?php esc_html_e( 'Step 1:', 'chrysos-ems' ); ?></strong>
+                <?php
+                printf(
+                    /* translators: %s: wp-config.php constant */
+                    esc_html__( 'Add this line to your %s file, before the "That\'s all" comment:', 'chrysos-ems' ),
+                    '<code>wp-config.php</code>'
+                );
+                ?>
+            </p>
+            <pre style="background: #f0f0f1; padding: 8px 12px; overflow-x: auto;"><code>define( 'DISABLE_WP_CRON', true );</code></pre>
+            <p>
+                <strong><?php esc_html_e( 'Step 2:', 'chrysos-ems' ); ?></strong>
+                <?php esc_html_e( 'Add a cron job on your server to call WP-Cron every minute:', 'chrysos-ems' ); ?>
+            </p>
+            <pre style="background: #f0f0f1; padding: 8px 12px; overflow-x: auto;"><code>* * * * * wget -q -O /dev/null <?php echo esc_html( site_url( '/wp-cron.php' ) ); ?></code></pre>
+            <p class="description">
+                <?php esc_html_e( 'If wget is not available, you can use curl instead:', 'chrysos-ems' ); ?>
+            </p>
+            <pre style="background: #f0f0f1; padding: 8px 12px; overflow-x: auto;"><code>* * * * * curl -s <?php echo esc_html( site_url( '/wp-cron.php' ) ); ?> > /dev/null 2>&1</code></pre>
+            <?php if ( $has_real_cron ) : ?>
+                <p style="color: #00a32a;">
+                    <strong>&#10003; <?php esc_html_e( 'WP-Cron is already disabled on this site, which means you probably have a server cron set up. Good.', 'chrysos-ems' ); ?></strong>
+                </p>
+            <?php else : ?>
+                <p style="color: #dba617;">
+                    <?php esc_html_e( 'This site is using the default WP-Cron. The schedule will work, but times may not be exact on low-traffic sites.', 'chrysos-ems' ); ?>
+                </p>
+            <?php endif; ?>
         </div>
         <?php
     }

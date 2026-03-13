@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Chrysos Elementor Maintenance Scheduler 1.0.0\n"
 "Report-Msgid-Bugs-To: https://github.com/chrysos/chrysos-elementor-"
 "maintenance-scheduler/issues\n"
-"POT-Creation-Date: 2026-03-13 20:22-0300\n"
+"POT-Creation-Date: 2026-03-13 20:25-0300\n"
 "PO-Revision-Date: 2026-03-13 20:22-0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Hebrew\n"
@@ -23,8 +23,7 @@ msgid ""
 "Maintenance Schedule requires the Elementor plugin. Please install and "
 "activate Elementor first."
 msgstr ""
-"תזמון תחזוקה דורש את תוסף Elementor. יש להתקין ולהפעיל את Elementor "
-"תחילה."
+"תזמון תחזוקה דורש את תוסף Elementor. יש להתקין ולהפעיל את Elementor תחילה."
 
 #: chrysos-elementor-maintenance-scheduler.php:58
 msgid "Settings"
@@ -66,136 +65,189 @@ msgstr "תאריכים נוספים"
 msgid "Dates"
 msgstr "תאריכים"
 
-#: includes/class-admin.php:139
+#: includes/class-admin.php:141
 msgid "Current status"
 msgstr "מצב נוכחי"
 
-#: includes/class-admin.php:142
+#: includes/class-admin.php:144
 msgid "Right now"
 msgstr "כרגע"
 
-#: includes/class-admin.php:147
+#: includes/class-admin.php:149
 msgid "On — Coming Soon mode"
 msgstr "פעיל — מצב בקרוב"
 
-#: includes/class-admin.php:148
+#: includes/class-admin.php:150
 msgid "On — Maintenance mode"
 msgstr "פעיל — מצב תחזוקה"
 
-#: includes/class-admin.php:152
+#: includes/class-admin.php:154
 msgid "Off — site is public"
 msgstr "כבוי — האתר ציבורי"
 
-#: includes/class-admin.php:157
+#: includes/class-admin.php:159
 msgid "Timezone"
 msgstr "אזור זמן"
 
-#: includes/class-admin.php:160
+#: includes/class-admin.php:162
 msgid "Change"
 msgstr "שינוי"
 
-#: includes/class-admin.php:164
+#: includes/class-admin.php:166
 msgid "Template"
 msgstr "תבנית"
 
-#: includes/class-admin.php:169
+#: includes/class-admin.php:171
 msgid "None selected"
 msgstr "לא נבחרה תבנית"
 
-#: includes/class-admin.php:171
+#: includes/class-admin.php:173
 msgid "Choose in Elementor"
 msgstr "בחירה ב-Elementor"
 
-#: includes/class-admin.php:187
+#: includes/class-admin.php:188
+msgid "Improving schedule accuracy"
+msgstr "שיפור דיוק התזמון"
+
+#: includes/class-admin.php:190
+msgid ""
+"WordPress runs scheduled tasks (WP-Cron) only when someone visits your site. "
+"On low-traffic sites this can delay activation or deactivation by minutes or "
+"even hours."
+msgstr ""
+"WordPress מריץ משימות מתוזמנות (WP-Cron) רק כשמישהו מבקר באתר. באתרים עם "
+"תעבורה נמוכה זה עלול לעכב הפעלה או כיבוי בדקות או אפילו שעות."
+
+#: includes/class-admin.php:193
+msgid ""
+"For precise timing, disable WP-Cron and use a real server cron job instead:"
+msgstr ""
+"לתזמון מדויק, יש לבטל את WP-Cron ולהשתמש במשימת cron אמיתית של השרת במקום:"
+
+#: includes/class-admin.php:196
+msgid "Step 1:"
+msgstr "שלב 1:"
+
+#: includes/class-admin.php:200
+#, php-format
+msgid "Add this line to your %s file, before the \"That's all\" comment:"
+msgstr "יש להוסיף את השורה הזו לקובץ %s, לפני ההערה \"That's all\":"
+
+#: includes/class-admin.php:207
+msgid "Step 2:"
+msgstr "שלב 2:"
+
+#: includes/class-admin.php:208
+msgid "Add a cron job on your server to call WP-Cron every minute:"
+msgstr "יש להוסיף משימת cron בשרת שתקרא ל-WP-Cron כל דקה:"
+
+#: includes/class-admin.php:212
+msgid "If wget is not available, you can use curl instead:"
+msgstr "אם wget אינו זמין, ניתן להשתמש ב-curl במקום:"
+
+#: includes/class-admin.php:217
+msgid ""
+"WP-Cron is already disabled on this site, which means you probably have a "
+"server cron set up. Good."
+msgstr ""
+"WP-Cron כבר מבוטל באתר זה, כלומר כנראה שיש לכם משימת cron בשרת. מצוין."
+
+#: includes/class-admin.php:221
+msgid ""
+"This site is using the default WP-Cron. The schedule will work, but times "
+"may not be exact on low-traffic sites."
+msgstr ""
+"אתר זה משתמש ב-WP-Cron המובנה. התזמון יעבוד, אך הזמנים עלולים להיות לא "
+"מדויקים באתרים עם תעבורה נמוכה."
+
+#: includes/class-admin.php:236
 msgid ""
 "Turn maintenance mode on and off automatically based on the schedule below"
-msgstr ""
-"הפעלה וכיבוי אוטומטיים של מצב תחזוקה בהתאם ללוח הזמנים שלהלן"
+msgstr "הפעלה וכיבוי אוטומטיים של מצב תחזוקה בהתאם ללוח הזמנים שלהלן"
 
-#: includes/class-admin.php:198
+#: includes/class-admin.php:247
 msgid "Maintenance"
 msgstr "תחזוקה"
 
-#: includes/class-admin.php:201
+#: includes/class-admin.php:250
 msgid "Coming Soon"
 msgstr "בקרוב"
 
-#: includes/class-admin.php:205
+#: includes/class-admin.php:254
 msgid ""
 "Maintenance returns HTTP 503, which tells search engines the site is "
 "temporarily down. Coming Soon returns HTTP 200, better for sites not yet "
 "launched. When in doubt, pick Maintenance."
 msgstr ""
-"תחזוקה מחזירה HTTP 503, שמודיע למנועי חיפוש שהאתר מושבת זמנית. "
-"בקרוב מחזיר HTTP 200, מתאים יותר לאתרים שטרם הושקו. "
-"במקרה של ספק, יש לבחור תחזוקה."
+"תחזוקה מחזירה HTTP 503, שמודיע למנועי חיפוש שהאתר מושבת זמנית. בקרוב מחזיר "
+"HTTP 200, מתאים יותר לאתרים שטרם הושקו. במקרה של ספק, יש לבחור תחזוקה."
 
-#: includes/class-admin.php:225
+#: includes/class-admin.php:274
 msgid ""
 "Enable or disable the automatic schedule below. While disabled, nothing "
 "happens, but your settings are kept."
 msgstr ""
-"הפעלה או השבתה של התזמון האוטומטי שלהלן. כשהתזמון מושבת, "
-"לא קורה דבר, אך ההגדרות נשמרות."
+"הפעלה או השבתה של התזמון האוטומטי שלהלן. כשהתזמון מושבת, לא קורה דבר, אך "
+"ההגדרות נשמרות."
 
-#: includes/class-admin.php:229
+#: includes/class-admin.php:278
 msgid ""
 "Pick the day and time when maintenance mode turns on and off each week. All "
 "times use your site's timezone (shown in the Status panel above)."
 msgstr ""
-"יש לבחור את היום והשעה שבהם מצב תחזוקה נדלק ונכבה בכל שבוע. "
-"כל הזמנים משתמשים באזור הזמן של האתר (מוצג בלוח המצב למעלה)."
+"יש לבחור את היום והשעה שבהם מצב תחזוקה נדלק ונכבה בכל שבוע. כל הזמנים "
+"משתמשים באזור הזמן של האתר (מוצג בלוח המצב למעלה)."
 
-#: includes/class-admin.php:233
+#: includes/class-admin.php:282
 msgid ""
 "Add specific dates when you also want maintenance mode on, like holidays or "
 "one-off events. Past dates are removed automatically."
 msgstr ""
-"הוספת תאריכים ספציפיים שבהם רוצים להפעיל מצב תחזוקה, כגון חגים או "
-"אירועים חד-פעמיים. תאריכים שעברו מוסרים באופן אוטומטי."
+"הוספת תאריכים ספציפיים שבהם רוצים להפעיל מצב תחזוקה, כגון חגים או אירועים חד-"
+"פעמיים. תאריכים שעברו מוסרים באופן אוטומטי."
 
-#: includes/class-admin.php:261
+#: includes/class-admin.php:310
 msgid "+ Add Date"
 msgstr "+ הוספת תאריך"
 
-#: includes/class-admin.php:270
+#: includes/class-admin.php:319
 msgid "Sunday"
 msgstr "יום ראשון"
 
-#: includes/class-admin.php:271
+#: includes/class-admin.php:320
 msgid "Monday"
 msgstr "יום שני"
 
-#: includes/class-admin.php:272
+#: includes/class-admin.php:321
 msgid "Tuesday"
 msgstr "יום שלישי"
 
-#: includes/class-admin.php:273
+#: includes/class-admin.php:322
 msgid "Wednesday"
 msgstr "יום רביעי"
 
-#: includes/class-admin.php:274
+#: includes/class-admin.php:323
 msgid "Thursday"
 msgstr "יום חמישי"
 
-#: includes/class-admin.php:275
+#: includes/class-admin.php:324
 msgid "Friday"
 msgstr "יום שישי"
 
-#: includes/class-admin.php:276
+#: includes/class-admin.php:325
 msgid "Saturday"
 msgstr "שבת"
 
-#: includes/class-admin.php:316
+#: includes/class-admin.php:365
 #, php-format
 msgid ""
 "You need to choose a maintenance page template in Elementor before the "
 "schedule can work. %s to pick one."
 msgstr ""
-"יש לבחור תבנית עמוד תחזוקה ב-Elementor לפני שהתזמון יוכל לפעול. "
-"%s כדי לבחור תבנית."
+"יש לבחור תבנית עמוד תחזוקה ב-Elementor לפני שהתזמון יוכל לפעול. %s כדי לבחור "
+"תבנית."
 
-#: includes/class-admin.php:317
+#: includes/class-admin.php:366
 msgid "Go to Elementor settings"
 msgstr "מעבר להגדרות Elementor"
 
@@ -208,8 +260,8 @@ msgid ""
 "Turn Elementor maintenance and coming soon modes on or off, check status, "
 "and manage the recurring schedule."
 msgstr ""
-"הפעלה או כיבוי של מצבי תחזוקה ובקרוב של Elementor, בדיקת מצב "
-"וניהול לוח הזמנים החוזר."
+"הפעלה או כיבוי של מצבי תחזוקה ובקרוב של Elementor, בדיקת מצב וניהול לוח "
+"הזמנים החוזר."
 
 #: includes/class-abilities.php:27
 msgid "Get Maintenance Status"
@@ -220,8 +272,8 @@ msgid ""
 "Check whether maintenance mode is on right now, which mode is active, and if "
 "the current time falls inside a scheduled window."
 msgstr ""
-"בדיקה האם מצב תחזוקה פעיל כעת, איזה מצב פעיל, והאם "
-"הזמן הנוכחי נופל בתוך חלון תזמון מתוכנן."
+"בדיקה האם מצב תחזוקה פעיל כעת, איזה מצב פעיל, והאם הזמן הנוכחי נופל בתוך "
+"חלון תזמון מתוכנן."
 
 #: includes/class-abilities.php:48
 msgid "Activate Maintenance Mode"
@@ -232,8 +284,8 @@ msgid ""
 "Turn maintenance mode on. You can pass \"maintenance\" or \"coming_soon\" as "
 "the mode; if omitted, the plugin's saved setting is used."
 msgstr ""
-"הפעלת מצב תחזוקה. ניתן להעביר \"maintenance\" או \"coming_soon\" כמצב; "
-"אם לא צוין, ייעשה שימוש בהגדרה השמורה של התוסף."
+"הפעלת מצב תחזוקה. ניתן להעביר \"maintenance\" או \"coming_soon\" כמצב; אם לא "
+"צוין, ייעשה שימוש בהגדרה השמורה של התוסף."
 
 #: includes/class-abilities.php:76
 msgid "Deactivate Maintenance Mode"
@@ -252,8 +304,8 @@ msgid ""
 "Read the current schedule: weekly on/off times, any extra dates, which mode "
 "is configured, and the site timezone."
 msgstr ""
-"קריאת לוח הזמנים הנוכחי: זמני הפעלה/כיבוי שבועיים, תאריכים נוספים, "
-"איזה מצב מוגדר ואזור הזמן של האתר."
+"קריאת לוח הזמנים הנוכחי: זמני הפעלה/כיבוי שבועיים, תאריכים נוספים, איזה מצב "
+"מוגדר ואזור הזמן של האתר."
 
 #: includes/class-abilities.php:128
 msgid "Rebuild Schedule"

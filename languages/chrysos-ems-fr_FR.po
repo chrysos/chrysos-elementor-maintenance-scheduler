@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Chrysos Elementor Maintenance Scheduler 1.0.0\n"
 "Report-Msgid-Bugs-To: https://github.com/chrysos/chrysos-elementor-"
 "maintenance-scheduler/issues\n"
-"POT-Creation-Date: 2026-03-13 20:22-0300\n"
+"POT-Creation-Date: 2026-03-13 20:25-0300\n"
 "PO-Revision-Date: 2026-03-13 20:22-0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: French (France)\n"
@@ -65,62 +65,121 @@ msgstr "Dates supplémentaires"
 msgid "Dates"
 msgstr "Dates"
 
-#: includes/class-admin.php:139
+#: includes/class-admin.php:141
 msgid "Current status"
 msgstr "État actuel"
 
-#: includes/class-admin.php:142
+#: includes/class-admin.php:144
 msgid "Right now"
 msgstr "En ce moment"
 
-#: includes/class-admin.php:147
+#: includes/class-admin.php:149
 msgid "On — Coming Soon mode"
 msgstr "Activé — Mode Bientôt disponible"
 
-#: includes/class-admin.php:148
+#: includes/class-admin.php:150
 msgid "On — Maintenance mode"
 msgstr "Activé — Mode maintenance"
 
-#: includes/class-admin.php:152
+#: includes/class-admin.php:154
 msgid "Off — site is public"
 msgstr "Désactivé — le site est public"
 
-#: includes/class-admin.php:157
+#: includes/class-admin.php:159
 msgid "Timezone"
 msgstr "Fuseau horaire"
 
-#: includes/class-admin.php:160
+#: includes/class-admin.php:162
 msgid "Change"
 msgstr "Modifier"
 
-#: includes/class-admin.php:164
+#: includes/class-admin.php:166
 msgid "Template"
 msgstr "Modèle"
 
-#: includes/class-admin.php:169
+#: includes/class-admin.php:171
 msgid "None selected"
 msgstr "Aucun sélectionné"
 
-#: includes/class-admin.php:171
+#: includes/class-admin.php:173
 msgid "Choose in Elementor"
 msgstr "Choisir dans Elementor"
 
-#: includes/class-admin.php:187
+#: includes/class-admin.php:188
+msgid "Improving schedule accuracy"
+msgstr "Améliorer la précision de la planification"
+
+#: includes/class-admin.php:190
+msgid ""
+"WordPress runs scheduled tasks (WP-Cron) only when someone visits your site. "
+"On low-traffic sites this can delay activation or deactivation by minutes or "
+"even hours."
+msgstr ""
+"WordPress exécute les tâches planifiées (WP-Cron) uniquement lorsqu'un "
+"visiteur accède à votre site. Sur les sites à faible trafic, cela peut "
+"retarder l'activation ou la désactivation de plusieurs minutes, voire "
+"plusieurs heures."
+
+#: includes/class-admin.php:193
+msgid ""
+"For precise timing, disable WP-Cron and use a real server cron job instead:"
+msgstr ""
+"Pour un minutage précis, désactivez WP-Cron et utilisez une vraie tâche "
+"cron sur le serveur :"
+
+#: includes/class-admin.php:196
+msgid "Step 1:"
+msgstr "Étape 1 :"
+
+#: includes/class-admin.php:200
+#, php-format
+msgid "Add this line to your %s file, before the \"That's all\" comment:"
+msgstr "Ajoutez cette ligne à votre fichier %s, avant le commentaire « That's all » :"
+
+#: includes/class-admin.php:207
+msgid "Step 2:"
+msgstr "Étape 2 :"
+
+#: includes/class-admin.php:208
+msgid "Add a cron job on your server to call WP-Cron every minute:"
+msgstr "Ajoutez une tâche cron sur votre serveur pour appeler WP-Cron chaque minute :"
+
+#: includes/class-admin.php:212
+msgid "If wget is not available, you can use curl instead:"
+msgstr "Si wget n'est pas disponible, vous pouvez utiliser curl à la place :"
+
+#: includes/class-admin.php:217
+msgid ""
+"WP-Cron is already disabled on this site, which means you probably have a "
+"server cron set up. Good."
+msgstr ""
+"WP-Cron est déjà désactivé sur ce site, ce qui signifie que vous avez "
+"probablement une tâche cron configurée sur le serveur. Parfait."
+
+#: includes/class-admin.php:221
+msgid ""
+"This site is using the default WP-Cron. The schedule will work, but times "
+"may not be exact on low-traffic sites."
+msgstr ""
+"Ce site utilise le WP-Cron par défaut. La planification fonctionnera, mais "
+"les horaires peuvent ne pas être exacts sur les sites à faible trafic."
+
+#: includes/class-admin.php:236
 msgid ""
 "Turn maintenance mode on and off automatically based on the schedule below"
 msgstr ""
 "Activer et désactiver automatiquement le mode maintenance selon la "
 "planification ci-dessous"
 
-#: includes/class-admin.php:198
+#: includes/class-admin.php:247
 msgid "Maintenance"
 msgstr "Maintenance"
 
-#: includes/class-admin.php:201
+#: includes/class-admin.php:250
 msgid "Coming Soon"
 msgstr "Bientôt disponible"
 
-#: includes/class-admin.php:205
+#: includes/class-admin.php:254
 msgid ""
 "Maintenance returns HTTP 503, which tells search engines the site is "
 "temporarily down. Coming Soon returns HTTP 200, better for sites not yet "
@@ -131,7 +190,7 @@ msgstr ""
 "plus adapté aux sites pas encore lancés. En cas de doute, choisissez "
 "Maintenance."
 
-#: includes/class-admin.php:225
+#: includes/class-admin.php:274
 msgid ""
 "Enable or disable the automatic schedule below. While disabled, nothing "
 "happens, but your settings are kept."
@@ -139,7 +198,7 @@ msgstr ""
 "Activez ou désactivez la planification automatique ci-dessous. Lorsqu'elle "
 "est désactivée, rien ne se passe, mais vos réglages sont conservés."
 
-#: includes/class-admin.php:229
+#: includes/class-admin.php:278
 msgid ""
 "Pick the day and time when maintenance mode turns on and off each week. All "
 "times use your site's timezone (shown in the Status panel above)."
@@ -148,7 +207,7 @@ msgstr ""
 "maintenance chaque semaine. Toutes les heures utilisent le fuseau horaire de "
 "votre site (affiché dans le panneau État ci-dessus)."
 
-#: includes/class-admin.php:233
+#: includes/class-admin.php:282
 msgid ""
 "Add specific dates when you also want maintenance mode on, like holidays or "
 "one-off events. Past dates are removed automatically."
@@ -157,39 +216,39 @@ msgstr ""
 "maintenance, comme les jours fériés ou les événements ponctuels. Les dates "
 "passées sont supprimées automatiquement."
 
-#: includes/class-admin.php:261
+#: includes/class-admin.php:310
 msgid "+ Add Date"
 msgstr "+ Ajouter une date"
 
-#: includes/class-admin.php:270
+#: includes/class-admin.php:319
 msgid "Sunday"
 msgstr "Dimanche"
 
-#: includes/class-admin.php:271
+#: includes/class-admin.php:320
 msgid "Monday"
 msgstr "Lundi"
 
-#: includes/class-admin.php:272
+#: includes/class-admin.php:321
 msgid "Tuesday"
 msgstr "Mardi"
 
-#: includes/class-admin.php:273
+#: includes/class-admin.php:322
 msgid "Wednesday"
 msgstr "Mercredi"
 
-#: includes/class-admin.php:274
+#: includes/class-admin.php:323
 msgid "Thursday"
 msgstr "Jeudi"
 
-#: includes/class-admin.php:275
+#: includes/class-admin.php:324
 msgid "Friday"
 msgstr "Vendredi"
 
-#: includes/class-admin.php:276
+#: includes/class-admin.php:325
 msgid "Saturday"
 msgstr "Samedi"
 
-#: includes/class-admin.php:316
+#: includes/class-admin.php:365
 #, php-format
 msgid ""
 "You need to choose a maintenance page template in Elementor before the "
@@ -198,7 +257,7 @@ msgstr ""
 "Vous devez choisir un modèle de page de maintenance dans Elementor avant que "
 "la planification puisse fonctionner. %s pour en choisir un."
 
-#: includes/class-admin.php:317
+#: includes/class-admin.php:366
 msgid "Go to Elementor settings"
 msgstr "Aller aux réglages Elementor"
 
@@ -223,8 +282,8 @@ msgid ""
 "Check whether maintenance mode is on right now, which mode is active, and if "
 "the current time falls inside a scheduled window."
 msgstr ""
-"Vérifier si le mode maintenance est actuellement activé, quel mode est "
-"actif et si l'heure actuelle se situe dans une fenêtre planifiée."
+"Vérifier si le mode maintenance est actuellement activé, quel mode est actif "
+"et si l'heure actuelle se situe dans une fenêtre planifiée."
 
 #: includes/class-abilities.php:48
 msgid "Activate Maintenance Mode"
@@ -272,5 +331,5 @@ msgid ""
 "Safe to call repeatedly; it rebuilds from scratch each time."
 msgstr ""
 "Effacer et recréer toutes les actions planifiées d'activation et de "
-"désactivation à partir des réglages enregistrés. Peut être appelé "
-"plusieurs fois sans risque ; la reconstruction se fait à zéro à chaque fois."
+"désactivation à partir des réglages enregistrés. Peut être appelé plusieurs "
+"fois sans risque ; la reconstruction se fait à zéro à chaque fois."
