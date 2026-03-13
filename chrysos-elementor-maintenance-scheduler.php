@@ -47,6 +47,13 @@ add_action( 'plugins_loaded', function () {
     }
 }, 20 );
 
+// Settings link on the Plugins page.
+add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), function ( $links ) {
+    $url = admin_url( 'options-general.php?page=chrysos-ems-schedule' );
+    array_unshift( $links, '<a href="' . esc_url( $url ) . '">' . __( 'Settings', 'chrysos-ems' ) . '</a>' );
+    return $links;
+} );
+
 // Activation.
 register_activation_hook( __FILE__, [ 'Chrysos_EMS\\Scheduler', 'on_activate' ] );
 
