@@ -26,6 +26,11 @@ require_once CHRYSOS_EMS_PATH . 'includes/class-scheduler.php';
 require_once CHRYSOS_EMS_PATH . 'includes/class-admin.php';
 require_once CHRYSOS_EMS_PATH . 'includes/class-abilities.php';
 
+// Load translations.
+add_action( 'init', function () {
+    load_plugin_textdomain( 'chrysos-ems', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+} );
+
 /**
  * Bootstrap after Elementor has loaded.
  */
