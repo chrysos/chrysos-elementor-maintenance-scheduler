@@ -1,0 +1,7 @@
+{
+    "name": "chrysos/elementor-maintenance-scheduler",
+    "description": "Elementor Maintenance Mode Scheduling",
+    "require": {
+        "woocommerce/action-scheduler": "^3.9"
+    }
+}
