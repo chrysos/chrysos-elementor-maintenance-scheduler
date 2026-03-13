@@ -1,0 +1,11 @@
+.git
+.gitignore
+.distignore
+.gitattributes
+composer.json
+composer.lock
+README.md
+docs/
+tests/
+node_modules/
+.DS_Store
