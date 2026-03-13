@@ -8,7 +8,7 @@
  * Author URI:  https://github.com/chrysos
  * License:     GPL-2.0-or-later
  * Requires Plugins: elementor
- * Text Domain: chrysos-ems
+ * Text Domain: chrysos-elementor-maintenance-scheduler
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -26,11 +26,6 @@ require_once CHRYSOS_EMS_PATH . 'includes/class-scheduler.php';
 require_once CHRYSOS_EMS_PATH . 'includes/class-admin.php';
 require_once CHRYSOS_EMS_PATH . 'includes/class-abilities.php';
 
-// Load translations.
-add_action( 'init', function () {
-    load_plugin_textdomain( 'chrysos-ems', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
-} );
-
 /**
  * Bootstrap after Elementor has loaded.
  */
@@ -38,7 +33,7 @@ add_action( 'plugins_loaded', function () {
     if ( ! defined( 'ELEMENTOR_VERSION' ) ) {
         add_action( 'admin_notices', function () {
             echo '<div class="notice notice-error is-dismissible"><p>';
-            echo esc_html__( 'Maintenance Schedule requires the Elementor plugin. Please install and activate Elementor first.', 'chrysos-ems' );
+            echo esc_html__( 'Maintenance Schedule requires the Elementor plugin. Please install and activate Elementor first.', 'chrysos-elementor-maintenance-scheduler' );
             echo '</p></div>';
         } );
         return;
@@ -55,7 +50,7 @@ add_action( 'plugins_loaded', function () {
 // Settings link on the Plugins page.
 add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), function ( $links ) {
     $url = admin_url( 'options-general.php?page=chrysos-ems-schedule' );
-    array_unshift( $links, '<a href="' . esc_url( $url ) . '">' . __( 'Settings', 'chrysos-ems' ) . '</a>' );
+    array_unshift( $links, '<a href="' . esc_url( $url ) . '">' . __( 'Settings', 'chrysos-elementor-maintenance-scheduler' ) . '</a>' );
     return $links;
 } );
 

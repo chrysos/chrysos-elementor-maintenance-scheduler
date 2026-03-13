@@ -15,8 +15,8 @@ class Abilities {
 
 	public function register_categories(): void {
 		wp_register_ability_category( 'maintenance', [
-			'label'       => __( 'Maintenance Mode', 'chrysos-ems' ),
-			'description' => __( 'Turn Elementor maintenance and coming soon modes on or off, check status, and manage the recurring schedule.', 'chrysos-ems' ),
+			'label'       => __( 'Maintenance Mode', 'chrysos-elementor-maintenance-scheduler' ),
+			'description' => __( 'Turn Elementor maintenance and coming soon modes on or off, check status, and manage the recurring schedule.', 'chrysos-elementor-maintenance-scheduler' ),
 		] );
 	}
 
@@ -24,8 +24,8 @@ class Abilities {
 		$permission = [ self::class, 'permission_check' ];
 
 		wp_register_ability( 'chrysos-ems/get-status', [
-			'label'               => __( 'Get Maintenance Status', 'chrysos-ems' ),
-			'description'         => __( 'Check whether maintenance mode is on right now, which mode is active, and if the current time falls inside a scheduled window.', 'chrysos-ems' ),
+			'label'               => __( 'Get Maintenance Status', 'chrysos-elementor-maintenance-scheduler' ),
+			'description'         => __( 'Check whether maintenance mode is on right now, which mode is active, and if the current time falls inside a scheduled window.', 'chrysos-elementor-maintenance-scheduler' ),
 			'category'            => 'maintenance',
 			'input_schema'        => null,
 			'output_schema'       => [
@@ -45,8 +45,8 @@ class Abilities {
 		] );
 
 		wp_register_ability( 'chrysos-ems/activate', [
-			'label'               => __( 'Activate Maintenance Mode', 'chrysos-ems' ),
-			'description'         => __( 'Turn maintenance mode on. You can pass "maintenance" or "coming_soon" as the mode; if omitted, the plugin\'s saved setting is used.', 'chrysos-ems' ),
+			'label'               => __( 'Activate Maintenance Mode', 'chrysos-elementor-maintenance-scheduler' ),
+			'description'         => __( 'Turn maintenance mode on. You can pass "maintenance" or "coming_soon" as the mode; if omitted, the plugin\'s saved setting is used.', 'chrysos-elementor-maintenance-scheduler' ),
 			'category'            => 'maintenance',
 			'input_schema'        => [
 				'type'       => 'object',
@@ -73,8 +73,8 @@ class Abilities {
 		] );
 
 		wp_register_ability( 'chrysos-ems/deactivate', [
-			'label'               => __( 'Deactivate Maintenance Mode', 'chrysos-ems' ),
-			'description'         => __( 'Turn maintenance mode off so the site is publicly accessible again.', 'chrysos-ems' ),
+			'label'               => __( 'Deactivate Maintenance Mode', 'chrysos-elementor-maintenance-scheduler' ),
+			'description'         => __( 'Turn maintenance mode off so the site is publicly accessible again.', 'chrysos-elementor-maintenance-scheduler' ),
 			'category'            => 'maintenance',
 			'input_schema'        => null,
 			'output_schema'       => [
@@ -91,8 +91,8 @@ class Abilities {
 		] );
 
 		wp_register_ability( 'chrysos-ems/get-schedule', [
-			'label'               => __( 'Get Maintenance Schedule', 'chrysos-ems' ),
-			'description'         => __( 'Read the current schedule: weekly on/off times, any extra dates, which mode is configured, and the site timezone.', 'chrysos-ems' ),
+			'label'               => __( 'Get Maintenance Schedule', 'chrysos-elementor-maintenance-scheduler' ),
+			'description'         => __( 'Read the current schedule: weekly on/off times, any extra dates, which mode is configured, and the site timezone.', 'chrysos-elementor-maintenance-scheduler' ),
 			'category'            => 'maintenance',
 			'input_schema'        => null,
 			'output_schema'       => [
@@ -125,8 +125,8 @@ class Abilities {
 		] );
 
 		wp_register_ability( 'chrysos-ems/reschedule', [
-			'label'               => __( 'Rebuild Schedule', 'chrysos-ems' ),
-			'description'         => __( 'Clear and recreate all scheduled on/off actions from the saved settings. Safe to call repeatedly; it rebuilds from scratch each time.', 'chrysos-ems' ),
+			'label'               => __( 'Rebuild Schedule', 'chrysos-elementor-maintenance-scheduler' ),
+			'description'         => __( 'Clear and recreate all scheduled on/off actions from the saved settings. Safe to call repeatedly; it rebuilds from scratch each time.', 'chrysos-elementor-maintenance-scheduler' ),
 			'category'            => 'maintenance',
 			'input_schema'        => null,
 			'output_schema'       => [
