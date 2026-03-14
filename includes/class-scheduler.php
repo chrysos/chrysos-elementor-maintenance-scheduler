@@ -8,49 +8,43 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Scheduler {
 
-    const ACTION_ACTIVATE   = 'chrysos_ems_activate';
-    const ACTION_DEACTIVATE = 'chrysos_ems_deactivate';
-    const ACTION_CLEANUP    = 'chrysos_ems_cleanup_dates';
-    const AS_GROUP          = 'chrysos-ems';
+    const CLEANUP_HOOK  = 'chrysos_ems_cleanup_dates';
+    const TRANSIENT_KEY = 'chrysos_ems_sync';
 
     public function __construct() {
-        add_action( self::ACTION_ACTIVATE, [ $this, 'handle_activate' ] );
-        add_action( self::ACTION_DEACTIVATE, [ $this, 'handle_deactivate' ] );
-        add_action( self::ACTION_CLEANUP, [ self::class, 'handle_cleanup_dates' ] );
+        add_action( 'init', [ $this, 'sync_state' ] );
+        add_action( self::CLEANUP_HOOK, [ self::class, 'handle_cleanup_dates' ] );
     }
 
     /**
-     * Plugin activation: schedule if settings exist.
+     * Plugin activation: schedule cleanup and force an immediate sync.
      */
     public static function on_activate(): void {
-        self::schedule_cleanup();
-        $settings = get_option( 'chrysos_ems_settings', [] );
-        if ( ! empty( $settings['enabled'] ) ) {
-            self::reschedule( $settings );
+        if ( ! wp_next_scheduled( self::CLEANUP_HOOK ) ) {
+            wp_schedule_event( time(), 'daily', self::CLEANUP_HOOK );
         }
+
+        delete_transient( self::TRANSIENT_KEY );
     }
 
     /**
-     * Plugin deactivation: clear all scheduled actions and deactivate maintenance mode.
+     * Plugin deactivation: clear cleanup cron and deactivate maintenance mode.
      */
     public static function on_deactivate(): void {
-        as_unschedule_all_actions( self::ACTION_ACTIVATE );
-        as_unschedule_all_actions( self::ACTION_DEACTIVATE );
-        as_unschedule_all_actions( self::ACTION_CLEANUP );
+        wp_clear_scheduled_hook( self::CLEANUP_HOOK );
+        delete_transient( self::TRANSIENT_KEY );
         Maintenance::deactivate();
     }
 
     /**
-     * Reschedule all actions based on current settings.
+     * Apply settings immediately (called from Admin after saving).
      */
     public static function reschedule( ?array $settings = null ): void {
         if ( null === $settings ) {
             $settings = get_option( 'chrysos_ems_settings', [] );
         }
 
-        // Clear existing actions.
-        as_unschedule_all_actions( self::ACTION_ACTIVATE );
-        as_unschedule_all_actions( self::ACTION_DEACTIVATE );
+        delete_transient( self::TRANSIENT_KEY );
 
         if ( empty( $settings['enabled'] ) ) {
             Maintenance::deactivate();
@@ -60,13 +54,6 @@ class Scheduler {
         $tz  = wp_timezone();
         $now = new \DateTime( 'now', $tz );
 
-        // Schedule weekly actions.
-        self::schedule_weekly( $settings, $now, $tz );
-
-        // Schedule extra date actions.
-        self::schedule_extra_dates( $settings, $now, $tz );
-
-        // Immediate state: activate or deactivate based on current window.
         if ( self::is_in_active_window( $settings, $now, $tz ) ) {
             Maintenance::activate();
         } else {
@@ -75,99 +62,32 @@ class Scheduler {
     }
 
     /**
-     * Schedule weekly activate/deactivate actions.
+     * Sync maintenance mode state on every page load (cached for 5 minutes).
      */
-    private static function schedule_weekly( array $settings, \DateTime $now, \DateTimeZone $tz ): void {
-        if ( ! isset( $settings['weekly_start_day'], $settings['weekly_start_time'], $settings['weekly_end_day'], $settings['weekly_end_time'] ) ) {
+    public function sync_state(): void {
+        if ( false !== get_transient( self::TRANSIENT_KEY ) ) {
             return;
         }
-
-        $start = self::next_weekday_time( (int) $settings['weekly_start_day'], $settings['weekly_start_time'], $now, $tz );
-        $end   = self::next_weekday_time( (int) $settings['weekly_end_day'], $settings['weekly_end_time'], $now, $tz );
-
-        // If we are currently inside the weekly window, only schedule deactivation and next activation.
-        $current_window = self::get_weekly_window( $settings, $now, $tz );
-        if ( $current_window ) {
-            as_schedule_single_action( $current_window['end']->getTimestamp(), self::ACTION_DEACTIVATE, [], self::AS_GROUP );
-            as_schedule_single_action( $start->getTimestamp(), self::ACTION_ACTIVATE, [], self::AS_GROUP );
-        } else {
-            as_schedule_single_action( $start->getTimestamp(), self::ACTION_ACTIVATE, [], self::AS_GROUP );
-            as_schedule_single_action( $end->getTimestamp(), self::ACTION_DEACTIVATE, [], self::AS_GROUP );
-        }
-    }
-
-    /**
-     * Schedule extra date actions.
-     */
-    private static function schedule_extra_dates( array $settings, \DateTime $now, \DateTimeZone $tz ): void {
-        if ( empty( $settings['extra_dates'] ) || ! is_array( $settings['extra_dates'] ) ) {
-            return;
-        }
-
-        foreach ( $settings['extra_dates'] as $entry ) {
-            if ( empty( $entry['date'] ) || empty( $entry['start_time'] ) || empty( $entry['end_time'] ) ) {
-                continue;
-            }
-
-            $start = \DateTime::createFromFormat( 'Y-m-d H:i', $entry['date'] . ' ' . $entry['start_time'], $tz );
-            $end   = \DateTime::createFromFormat( 'Y-m-d H:i', $entry['date'] . ' ' . $entry['end_time'], $tz );
-
-            if ( ! $start || ! $end ) {
-                continue;
-            }
-
-            // If end is before start, it means end is next day.
-            if ( $end <= $start ) {
-                $end->modify( '+1 day' );
-            }
-
-            if ( $start > $now ) {
-                as_schedule_single_action( $start->getTimestamp(), self::ACTION_ACTIVATE, [ 'extra_date' => $entry['date'] ], self::AS_GROUP );
-            }
-
-            if ( $end > $now ) {
-                as_schedule_single_action( $end->getTimestamp(), self::ACTION_DEACTIVATE, [ 'extra_date' => $entry['date'] ], self::AS_GROUP );
-            }
-        }
-    }
-
-    /**
-     * Handle activation action.
-     */
-    public function handle_activate(): void {
-        Maintenance::activate();
 
         $settings = get_option( 'chrysos_ems_settings', [] );
-        $tz       = wp_timezone();
-        $now      = new \DateTime( 'now', $tz );
 
-        // Schedule corresponding deactivation.
-        $window = self::get_weekly_window( $settings, $now, $tz );
-        if ( $window && $window['end'] > $now ) {
-            as_schedule_single_action( $window['end']->getTimestamp(), self::ACTION_DEACTIVATE, [], self::AS_GROUP );
-        }
-
-        // Schedule next week's activation.
-        if ( isset( $settings['weekly_start_day'], $settings['weekly_start_time'] ) ) {
-            $next_start = self::next_weekday_time( (int) $settings['weekly_start_day'], $settings['weekly_start_time'], $now, $tz );
-            as_schedule_single_action( $next_start->getTimestamp(), self::ACTION_ACTIVATE, [], self::AS_GROUP );
-        }
-    }
-
-    /**
-     * Handle deactivation action.
-     */
-    public function handle_deactivate(): void {
-        $settings = get_option( 'chrysos_ems_settings', [] );
-        $tz       = wp_timezone();
-        $now      = new \DateTime( 'now', $tz );
-
-        // Guard: don't deactivate if we're still inside another active window.
-        if ( self::is_in_active_window( $settings, $now, $tz ) ) {
+        if ( empty( $settings['enabled'] ) ) {
+            set_transient( self::TRANSIENT_KEY, 'checked', 5 * MINUTE_IN_SECONDS );
             return;
         }
 
-        Maintenance::deactivate();
+        $tz        = wp_timezone();
+        $now       = new \DateTime( 'now', $tz );
+        $should_be = self::is_in_active_window( $settings, $now, $tz );
+        $is_active = Maintenance::is_active();
+
+        if ( $should_be && ! $is_active ) {
+            Maintenance::activate();
+        } elseif ( ! $should_be && $is_active ) {
+            Maintenance::deactivate();
+        }
+
+        set_transient( self::TRANSIENT_KEY, 'checked', 5 * MINUTE_IN_SECONDS );
     }
 
     /**
@@ -272,15 +192,6 @@ class Scheduler {
     }
 
     /**
-     * Schedule the weekly cleanup of past extra dates.
-     */
-    private static function schedule_cleanup(): void {
-        if ( false === as_next_scheduled_action( self::ACTION_CLEANUP, [], self::AS_GROUP ) ) {
-            as_schedule_recurring_action( time(), WEEK_IN_SECONDS, self::ACTION_CLEANUP, [], self::AS_GROUP );
-        }
-    }
-
-    /**
      * Remove past extra dates from settings.
      */
     public static function handle_cleanup_dates(): void {
@@ -303,24 +214,5 @@ class Scheduler {
             $settings['extra_dates'] = $cleaned;
             update_option( 'chrysos_ems_settings', $settings );
         }
-    }
-
-    /**
-     * Calculate the next occurrence of a given weekday + time from now.
-     */
-    private static function next_weekday_time( int $target_day, string $time, \DateTime $now, \DateTimeZone $tz ): \DateTime {
-        $current_dow = (int) $now->format( 'w' );
-        $diff        = $target_day - $current_dow;
-
-        $dt = clone $now;
-        $dt->modify( sprintf( '%+d days', $diff ) );
-        $dt->setTime( ...array_map( 'intval', explode( ':', $time ) ) );
-
-        // If this time has already passed, advance to next week.
-        if ( $dt <= $now ) {
-            $dt->modify( '+7 days' );
-        }
-
-        return $dt;
     }
 }

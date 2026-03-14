@@ -19,8 +19,7 @@ define( 'CHRYSOS_EMS_VERSION', '1.0.0' );
 define( 'CHRYSOS_EMS_PATH', plugin_dir_path( __FILE__ ) );
 define( 'CHRYSOS_EMS_FILE', __FILE__ );
 
-// Load dependencies (needed early for activation/deactivation hooks).
-require_once CHRYSOS_EMS_PATH . 'vendor/woocommerce/action-scheduler/action-scheduler.php';
+// Load dependencies.
 require_once CHRYSOS_EMS_PATH . 'includes/class-maintenance.php';
 require_once CHRYSOS_EMS_PATH . 'includes/class-scheduler.php';
 require_once CHRYSOS_EMS_PATH . 'includes/class-admin.php';
